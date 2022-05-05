@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
-const fs = require("fs");
+const path = require("path");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const node_env = process.env.NODE_ENV;
 
 app.set("port", PORT);
 app.set("env", node_env);
 
-app.get("/", (req, res) => res.send("Hello World!"));
-app.listen(PORT, () => console.log(`Example app listening on port ${port}!`));
+app.get("/", (req, res) => {
+  res.status(200).sendFile("./build/index.html");
+});
+app.listen(PORT, () => console.log(`Running on ${PORT}!`));
