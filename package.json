@@ -1,0 +1,12 @@
+{
+  "name": "market-square-production-version",
+  "version": "1.0.0",
+  "description": "Production Version of Maret Square",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Market Square",
+  "license": "MIT"
+}
