@@ -9,6 +9,7 @@ app.set("port", PORT);
 app.set("env", node_env);
 
 app.get("/", (req, res) => {
-  res.status(200).sendFile("./build/index.html");
+  app.use(express.static(path.resolve(__dirname + "/build/")));
+  res.status(200).sendFile(path.resolve(__dirname + "/build/index.html"));
 });
 app.listen(PORT, () => console.log(`Running on ${PORT}!`));
