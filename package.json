@@ -8,5 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Market Square",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.18.1",
+    "helmet": "^5.0.2",
+    "morgan": "^1.10.0"
+  }
 }
