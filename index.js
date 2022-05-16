@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  app.use(express.static(authStatic));
-  res.status(200).sendFile(auth);
+  app.use(express.static(authStatic, { maxAge: 700000000 }));
+  res.status(200).sendFile(auth, { maxAge: 700000000 });
 });
 app.listen(PORT, () => console.log(`Running on ${PORT}!`));
