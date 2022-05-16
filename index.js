@@ -1,10 +1,19 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const morgan = require("morgan");
+const helmet = require("helmet");
+const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 
 const PORT = process.env.PORT || 5000;
 const node_env = process.env.NODE_ENV;
+
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(compression());
+app.use(morgan("tiny"));
+app.use(express.urlencoded({ extended: false, limit: "25mb" }));
+
 const authStatic = path.resolve(__dirname + "/prod/auth");
 const auth = path.resolve(__dirname + "/prod/auth/index.html");
 const rateLimiter = rateLimit({
