@@ -38,11 +38,10 @@ if (cluster.isPrimary) {
     cluster.fork();
   });
 } else {
-  app.use(helmet({ contentSecurityPolicy: false }));
+  app.use(helmet());
   app.use(rateLimiter);
   app.use(compression());
   app.use(morgan("tiny"));
-  app.use(express.urlencoded({ extended: false, limit: "25mb" }));
 
   app.set("port", PORT);
   app.set("env", node_env);
@@ -54,13 +53,13 @@ if (cluster.isPrimary) {
   });
 
   app.get("/", (req, res) => {
-    app.use(express.static(landingPageStatic, { maxAge: 700000000 }));
-    res.status(200).sendFile(landingPage, { maxAge: 700000000 });
+    app.use(express.static(landingPageStatic));
+    res.status(200).sendFile(landingPage);
   });
 
-  app.get("/auth", (req, res) => {
-    app.use(express.static(authStatic, { maxAge: 700000000 }));
-    res.status(200).sendFile(auth, { maxAge: 700000000 });
+  app.get("/auth/*", (req, res) => {
+    app.use(express.static(authStatic));
+    res.status(200).sendFile(auth);
   });
 
   app.listen(PORT, () => console.log(`Running on ${PORT}!`));
